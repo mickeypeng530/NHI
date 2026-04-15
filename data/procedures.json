@@ -234,9 +234,10 @@
     "id": "proc_15",
     "type": "procedure",
     "nhi_code": "33049B",
-    "name_zh": "順行性靜脈攝影",
+    "name_zh": "順行性靜脈攝影 (AV)",
     "name_en": "Antegrade venography",
     "points": 6000,
+    "ppf": 2100,
     "category": "靜脈攝影",
     "payment_text": "不得同時申報33097B及18047B。"
   },
