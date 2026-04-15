@@ -1,0 +1,286 @@
+/* ===== NHI Quick Reference App ===== */
+
+let allData = [];
+let fuseInstance = null;
+let currentTab = 'all';
+let currentQuery = '';
+
+// ===== Load Data =====
+async function loadData() {
+  try {
+    const [diagRes, drugRes, procRes] = await Promise.all([
+      fetch('data/diagnoses.json'),
+      fetch('data/drugs.json'),
+      fetch('data/procedures.json'),
+    ]);
+    const [diags, drugs, procs] = await Promise.all([
+      diagRes.json(), drugRes.json(), procRes.json()
+    ]);
+    allData = [...diags, ...drugs, ...procs];
+    initFuse();
+    render();
+    updateTabCounts();
+  } catch (e) {
+    document.getElementById('cards').innerHTML =
+      `<div class="no-results"><div class="icon">⚠️</div><p>無法載入資料：${e.message}</p></div>`;
+  }
+}
+
+// ===== Fuse.js Setup =====
+function initFuse() {
+  fuseInstance = new Fuse(allData, {
+    keys: [
+      { name: 'name_zh',    weight: 0.35 },
+      { name: 'name_en',    weight: 0.25 },
+      { name: 'brand',      weight: 0.3  },
+      { name: 'nhi_code',   weight: 0.25 },
+      { name: 'ingredient', weight: 0.15 },
+      { name: 'icd10_codes.code', weight: 0.2 },
+      { name: 'icd10_codes.eng',  weight: 0.1 },
+      { name: 'category',   weight: 0.1  },
+    ],
+    threshold: 0.4,
+    includeScore: true,
+    ignoreLocation: true,
+    minMatchCharLength: 1,
+  });
+}
+
+// ===== Search =====
+function getFilteredData() {
+  let results = currentQuery.trim()
+    ? fuseInstance.search(currentQuery).map(r => r.item)
+    : [...allData];
+
+  if (currentTab !== 'all') {
+    results = results.filter(d => d.type === currentTab);
+  }
+  return results;
+}
+
+// ===== Render =====
+function render() {
+  const data = getFilteredData();
+  const container = document.getElementById('cards');
+  const info = document.getElementById('results-info');
+
+  info.textContent = currentQuery
+    ? `找到 ${data.length} 筆符合「${currentQuery}」的結果`
+    : `共 ${data.length} 筆`;
+
+  if (data.length === 0) {
+    container.innerHTML = `<div class="no-results"><div class="icon">🔍</div><p>找不到相關資料</p></div>`;
+    return;
+  }
+
+  container.innerHTML = data.map(item => renderCard(item)).join('');
+
+  // Attach events after render
+  container.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => copyText(btn, btn.dataset.copy));
+  });
+  container.querySelectorAll('.icd-chip').forEach(chip => {
+    chip.addEventListener('click', () => copyText(chip, chip.dataset.copy));
+  });
+  container.querySelectorAll('.payment-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const section = btn.closest('.payment-section');
+      section.classList.toggle('open');
+    });
+  });
+}
+
+// ===== Card Templates =====
+function renderCard(item) {
+  if (item.type === 'diagnosis') return renderDiagCard(item);
+  if (item.type === 'drug')      return renderDrugCard(item);
+  if (item.type === 'procedure') return renderProcCard(item);
+  return '';
+}
+
+function renderDiagCard(d) {
+  const codes = (d.icd10_codes || []).slice(0, 12);
+  const chips = codes.map(c =>
+    `<span class="icd-chip" data-copy="${c.code}" title="${c.eng}">
+      ${c.code}
+      ${c.cht ? `<span class="icd-chip-desc">${c.cht}</span>` : ''}
+    </span>`
+  ).join('');
+
+  return `
+<div class="card">
+  <div class="card-header">
+    <div class="type-dot diagnosis"></div>
+    <div class="card-title-area">
+      <div class="card-name-zh">${d.name_zh}</div>
+      <div class="card-name-en">${d.name_en}</div>
+      <div class="badge-row"><span class="badge badge-diag">診斷</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="info-row" style="margin-bottom:8px">
+      <span class="info-label">ICD-10</span>
+      <div class="icd-chips">${chips}</div>
+    </div>
+    <div style="font-size:0.72rem;color:var(--text-muted)">點擊代碼可複製</div>
+  </div>
+</div>`;
+}
+
+function renderDrugCard(d) {
+  const selfPay = d.self_pay;
+  const priceHtml = selfPay
+    ? `<span class="badge badge-self">自費</span>`
+    : `<span class="price-tag">NT$ ${d.price != null ? d.price.toLocaleString() : '—'}</span>`;
+
+  const codeRow = d.nhi_code
+    ? `<div class="info-row">
+        <span class="info-label">健保碼</span>
+        <span class="info-value">
+          <code style="font-size:0.85rem">${d.nhi_code}</code>
+          <button class="copy-btn" data-copy="${d.nhi_code}">複製</button>
+        </span>
+       </div>`
+    : '';
+
+  const paySection = d.payment_text
+    ? `<div class="payment-section">
+        <button class="payment-toggle">給付規定 <span class="toggle-arrow">▼</span></button>
+        <div class="payment-text">${escHtml(d.payment_text)}</div>
+       </div>`
+    : '';
+
+  return `
+<div class="card">
+  <div class="card-header">
+    <div class="type-dot drug"></div>
+    <div class="card-title-area">
+      <div class="card-name-zh">${d.brand}${d.name_zh && d.name_zh !== d.brand ? ` <span style="font-weight:400;font-size:0.85rem">(${d.name_zh})</span>` : ''}</div>
+      <div class="card-name-en">${d.ingredient || d.name_en}</div>
+      <div class="badge-row">
+        <span class="badge badge-drug">藥物</span>
+        ${selfPay ? '<span class="badge badge-self">自費</span>' : ''}
+        ${d.form ? `<span class="badge badge-cat">${d.form}</span>` : ''}
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="info-rows">
+      ${codeRow}
+      <div class="info-row">
+        <span class="info-label">支付價</span>
+        <span class="info-value">${priceHtml}</span>
+      </div>
+      ${d.spec ? `<div class="info-row"><span class="info-label">規格</span><span class="info-value">${d.spec}</span></div>` : ''}
+    </div>
+    ${paySection}
+  </div>
+</div>`;
+}
+
+function renderProcCard(p) {
+  const nthDot = p.points > 0
+    ? `<span class="points-tag">${p.points.toLocaleString()} 點</span>
+       <span style="font-size:0.78rem;color:var(--text-muted)">≈ NT$${Math.round(p.points * 0.9).toLocaleString()}</span>`
+    : '<span style="color:var(--text-muted)">—</span>';
+
+  const paySection = p.payment_text
+    ? `<div class="payment-section">
+        <button class="payment-toggle">給付規定 <span class="toggle-arrow">▼</span></button>
+        <div class="payment-text">${escHtml(p.payment_text)}</div>
+       </div>`
+    : '';
+
+  return `
+<div class="card">
+  <div class="card-header">
+    <div class="type-dot procedure"></div>
+    <div class="card-title-area">
+      <div class="card-name-zh">${p.name_zh}</div>
+      <div class="card-name-en">${p.name_en}</div>
+      <div class="badge-row">
+        <span class="badge badge-proc">處置</span>
+        ${p.category ? `<span class="badge badge-cat">${p.category}</span>` : ''}
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="info-rows">
+      <div class="info-row">
+        <span class="info-label">健保碼</span>
+        <span class="info-value">
+          <code style="font-size:0.85rem">${p.nhi_code}</code>
+          <button class="copy-btn" data-copy="${p.nhi_code}">複製</button>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">點數</span>
+        <span class="info-value">${nthDot}</span>
+      </div>
+    </div>
+    ${paySection}
+  </div>
+</div>`;
+}
+
+// ===== Helpers =====
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function copyText(el, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    el.classList.add('copied');
+    const orig = el.textContent;
+    el.textContent = '已複製';
+    setTimeout(() => { el.classList.remove('copied'); el.textContent = orig; }, 1500);
+  }).catch(() => {
+    // fallback
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 1500);
+  });
+}
+
+function updateTabCounts() {
+  const counts = { all: allData.length, diagnosis: 0, drug: 0, procedure: 0 };
+  allData.forEach(d => counts[d.type]++);
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    const tab = btn.dataset.tab;
+    const countEl = btn.querySelector('.count');
+    if (countEl && counts[tab] != null) countEl.textContent = counts[tab];
+  });
+}
+
+// ===== Event Listeners =====
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('search');
+  const clearBtn = document.getElementById('clear-search');
+
+  searchInput.addEventListener('input', e => {
+    currentQuery = e.target.value;
+    render();
+  });
+
+  clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    currentQuery = '';
+    render();
+    searchInput.focus();
+  });
+
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentTab = btn.dataset.tab;
+      render();
+    });
+  });
+
+  loadData();
+});

@@ -1,0 +1,320 @@
+[
+  {
+    "id": "diag_1",
+    "type": "diagnosis",
+    "name_zh": "腰椎神經根病變",
+    "name_en": "Lumbar Radiculopathy",
+    "icd10_codes": [
+      {
+        "code": "M54.16",
+        "eng": "Radiculopathy, lumbar region",
+        "cht": ""
+      },
+      {
+        "code": "M54.17",
+        "eng": "Radiculopathy, lumbosacral region",
+        "cht": ""
+      }
+    ]
+  },
+  {
+    "id": "diag_2",
+    "type": "diagnosis",
+    "name_zh": "膝關節退化性關節炎",
+    "name_en": "Knee Osteoarthritis",
+    "icd10_codes": [
+      {
+        "code": "M17.0",
+        "eng": "Bilateral primary osteoarthritis of knee",
+        "cht": ""
+      },
+      {
+        "code": "M17.1",
+        "eng": "Unilateral primary osteoarthritis of knee",
+        "cht": ""
+      },
+      {
+        "code": "M17.11",
+        "eng": "Unilateral primary osteoarthritis, right knee",
+        "cht": ""
+      },
+      {
+        "code": "M17.12",
+        "eng": "Unilateral primary osteoarthritis, left knee",
+        "cht": ""
+      },
+      {
+        "code": "M17.31",
+        "eng": "Unilateral post-traumatic osteoarthritis, right knee",
+        "cht": ""
+      },
+      {
+        "code": "M17.32",
+        "eng": "Unilateral post-traumatic osteoarthritis, left knee",
+        "cht": ""
+      }
+    ]
+  },
+  {
+    "id": "diag_3",
+    "type": "diagnosis",
+    "name_zh": "膝關節前十字韌帶損傷",
+    "name_en": "Knee ACL Injury",
+    "icd10_codes": [
+      {
+        "code": "S83.501A",
+        "eng": "Sprain of unspecified cruciate ligament of right knee, initial encounter",
+        "cht": ""
+      },
+      {
+        "code": "S83.502A",
+        "eng": "Sprain of unspecified cruciate ligament of left knee, initial encounter",
+        "cht": ""
+      },
+      {
+        "code": "S83.511A",
+        "eng": "Sprain of anterior cruciate ligament of right knee, initial encounter",
+        "cht": ""
+      },
+      {
+        "code": "S83.512A",
+        "eng": "Sprain of anterior cruciate ligament of left knee, initial encounter",
+        "cht": ""
+      }
+    ]
+  },
+  {
+    "id": "diag_4",
+    "type": "diagnosis",
+    "name_zh": "足底筋膜炎",
+    "name_en": "Plantar Fasciitis",
+    "icd10_codes": [
+      {
+        "code": "M72.2",
+        "eng": "Plantar fascial fibromatosis",
+        "cht": ""
+      }
+    ]
+  },
+  {
+    "id": "diag_5",
+    "type": "diagnosis",
+    "name_zh": "肩旋轉肌袖撕裂傷",
+    "name_en": "Shoulder Rotator Cuff Tear",
+    "icd10_codes": [
+      {
+        "code": "M75.100",
+        "eng": "Unspecified rotator cuff tear or rupture of unspecified shoulder, not specified as traumatic",
+        "cht": ""
+      },
+      {
+        "code": "M75.101",
+        "eng": "Unspecified rotator cuff tear or rupture of right shoulder, not specified as traumatic",
+        "cht": ""
+      },
+      {
+        "code": "M75.102",
+        "eng": "Unspecified rotator cuff tear or rupture of left shoulder, not specified as traumatic",
+        "cht": ""
+      },
+      {
+        "code": "M75.110",
+        "eng": "Incomplete rotator cuff tear or rupture of unspecified shoulder, not specified as traumatic",
+        "cht": ""
+      },
+      {
+        "code": "M75.111",
+        "eng": "Incomplete rotator cuff tear or rupture of right shoulder, not specified as traumatic",
+        "cht": ""
+      },
+      {
+        "code": "M75.112",
+        "eng": "Incomplete rotator cuff tear or rupture of left shoulder, not specified as traumatic",
+        "cht": ""
+      }
+    ]
+  },
+  {
+    "id": "diag_6",
+    "type": "diagnosis",
+    "name_zh": "肱骨外上髁炎（網球肘）",
+    "name_en": "Tennis Elbow",
+    "icd10_codes": [
+      {
+        "code": "M77.10",
+        "eng": "Lateral epicondylitis, unspecified elbow",
+        "cht": ""
+      },
+      {
+        "code": "M77.11",
+        "eng": "Lateral epicondylitis, right elbow",
+        "cht": ""
+      },
+      {
+        "code": "M77.12",
+        "eng": "Lateral epicondylitis, left elbow",
+        "cht": ""
+      }
+    ]
+  },
+  {
+    "id": "diag_7",
+    "type": "diagnosis",
+    "name_zh": "肱骨內上髁炎（高爾夫球肘）",
+    "name_en": "Golfer's Elbow",
+    "icd10_codes": [
+      {
+        "code": "M77.00",
+        "eng": "Medial epicondylitis, unspecified elbow",
+        "cht": ""
+      },
+      {
+        "code": "M77.01",
+        "eng": "Medial epicondylitis, right elbow",
+        "cht": ""
+      },
+      {
+        "code": "M77.02",
+        "eng": "Medial epicondylitis, left elbow",
+        "cht": ""
+      }
+    ]
+  },
+  {
+    "id": "diag_8",
+    "type": "diagnosis",
+    "name_zh": "三角纖維軟骨複合體損傷",
+    "name_en": "TFCC Injury",
+    "icd10_codes": [
+      {
+        "code": "S63.001A",
+        "eng": "Unspecified subluxation of right wrist",
+        "cht": ""
+      },
+      {
+        "code": "S63.002A",
+        "eng": "Unspecified subluxation of left wrist",
+        "cht": ""
+      },
+      {
+        "code": "M25.331",
+        "eng": "Other instability, right wrist",
+        "cht": ""
+      },
+      {
+        "code": "M25.332",
+        "eng": "Other instability, left wrist",
+        "cht": ""
+      }
+    ]
+  },
+  {
+    "id": "diag_9",
+    "type": "diagnosis",
+    "name_zh": "手指退化性關節炎",
+    "name_en": "Finger Osteoarthritis",
+    "icd10_codes": [
+      {
+        "code": "M15.0",
+        "eng": "Primary generalized (osteo)arthritis",
+        "cht": ""
+      },
+      {
+        "code": "M15.1",
+        "eng": "Heberden's nodes (with arthropathy)",
+        "cht": ""
+      },
+      {
+        "code": "M15.2",
+        "eng": "",
+        "cht": ""
+      }
+    ]
+  },
+  {
+    "id": "diag_10",
+    "type": "diagnosis",
+    "name_zh": "骨質疏鬆症（合併骨折）",
+    "name_en": "Osteoporosis with Fracture",
+    "icd10_codes": [
+      {
+        "code": "M80.00XA",
+        "eng": "Age-related osteoporosis with current pathological fracture, unspecified site, initial encounter for fracture",
+        "cht": ""
+      },
+      {
+        "code": "M80.01XA",
+        "eng": "",
+        "cht": ""
+      },
+      {
+        "code": "M80.02XA",
+        "eng": "",
+        "cht": ""
+      },
+      {
+        "code": "M80.03XA",
+        "eng": "",
+        "cht": ""
+      },
+      {
+        "code": "M80.04XA",
+        "eng": "",
+        "cht": ""
+      },
+      {
+        "code": "M80.05XA",
+        "eng": "",
+        "cht": ""
+      },
+      {
+        "code": "M80.06XA",
+        "eng": "",
+        "cht": ""
+      },
+      {
+        "code": "M80.07XA",
+        "eng": "",
+        "cht": ""
+      },
+      {
+        "code": "M80.08XA",
+        "eng": "Age-related osteoporosis with current pathological fracture, vertebra(e), initial encounter for fracture",
+        "cht": ""
+      },
+      {
+        "code": "M80.80XA",
+        "eng": "Other osteoporosis with current pathological fracture, unspecified site, initial encounter for fracture",
+        "cht": ""
+      },
+      {
+        "code": "M80.88XA",
+        "eng": "Other osteoporosis with current pathological fracture, vertebra(e), initial encounter for fracture",
+        "cht": ""
+      }
+    ]
+  },
+  {
+    "id": "diag_11",
+    "type": "diagnosis",
+    "name_zh": "骨質疏鬆症（不合併骨折）",
+    "name_en": "Osteoporosis without Fracture",
+    "icd10_codes": [
+      {
+        "code": "M81.0",
+        "eng": "Age-related osteoporosis without current pathological fracture",
+        "cht": ""
+      },
+      {
+        "code": "M81.6",
+        "eng": "",
+        "cht": ""
+      },
+      {
+        "code": "M81.8",
+        "eng": "Other osteoporosis without current pathological fracture",
+        "cht": ""
+      }
+    ]
+  }
+]

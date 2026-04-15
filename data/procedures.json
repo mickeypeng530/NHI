@@ -1,0 +1,312 @@
+[
+  {
+    "id": "proc_1",
+    "type": "procedure",
+    "nhi_code": "19005C",
+    "name_zh": "其他超音波",
+    "name_en": "Echo for others",
+    "points": 630,
+    "category": "超音波",
+    "payment_text": "1.本節未列之超音波檢查，得以本項申報。2.兒童加成項目。"
+  },
+  {
+    "id": "proc_2",
+    "type": "procedure",
+    "nhi_code": "19007C",
+    "name_zh": "超音波導引(為組織切片，抽吸、注射等)",
+    "name_en": "Ultrasonic guidance for needle placement(eg, biopsy, aspiration, injection)",
+    "points": 1500,
+    "category": "超音波",
+    "payment_text": "1.實施超音波導引下組織切片、抽吸、注射，除申報本項外，應再加報第二章第一節第二十二項診斷穿刺。2.兒童加成項目。3.屬西醫基層總額部門院所，除山地離島地區外，限由專任醫師開立處方及執行始可申報。"
+  },
+  {
+    "id": "proc_3",
+    "type": "procedure",
+    "nhi_code": "33025B",
+    "name_zh": "經皮穿肝膽管造影術",
+    "name_en": "P.T.C. (Percutaneous transhepatic cholangiography)",
+    "points": 3150,
+    "category": "膽道介入",
+    "payment_text": ""
+  },
+  {
+    "id": "proc_4",
+    "type": "procedure",
+    "nhi_code": "33026B",
+    "name_zh": "經皮穿肝膽管引流術",
+    "name_en": "P.T.C.D. (Percutaneous transhepatic cholangiography-drainage )",
+    "points": 9600,
+    "category": "膽道介入",
+    "payment_text": ""
+  },
+  {
+    "id": "proc_5",
+    "type": "procedure",
+    "nhi_code": "33027B",
+    "name_zh": "經皮穿肝膽管引流修正術",
+    "name_en": "P.T.C.D. revision",
+    "points": 1200,
+    "category": "膽道介入",
+    "payment_text": ""
+  },
+  {
+    "id": "proc_6",
+    "type": "procedure",
+    "nhi_code": "33032B",
+    "name_zh": "皮下穿刺腎造廔術",
+    "name_en": "P.C.N. (Percutaneous nephrostomy)",
+    "points": 7500,
+    "category": "泌尿介入",
+    "payment_text": "單側"
+  },
+  {
+    "id": "proc_7",
+    "type": "procedure",
+    "nhi_code": "33041B",
+    "name_zh": "頸動脈造影－ 單側",
+    "name_en": "Common carotid artery- one side",
+    "points": 7500,
+    "category": "血管攝影",
+    "payment_text": "包括總頸動脈 (common carotid)、內頸動脈(internal carotid) 或外頸動脈 (externa carotid) 均比照申報。"
+  },
+  {
+    "id": "proc_8",
+    "type": "procedure",
+    "nhi_code": "33042B",
+    "name_zh": "頸動脈造影－ 雙側",
+    "name_en": "Common carotid artery-both side",
+    "points": 11250,
+    "category": "血管攝影",
+    "payment_text": "包括總頸動脈 (common carotid)、內頸動脈(internal carotid) 或外頸動脈 (externa carotid) 均比照申報。"
+  },
+  {
+    "id": "proc_9",
+    "type": "procedure",
+    "nhi_code": "33043B",
+    "name_zh": "椎動靜脈造影",
+    "name_en": "Vertebral angiography",
+    "points": 4830,
+    "category": "血管攝影",
+    "payment_text": ""
+  },
+  {
+    "id": "proc_10",
+    "type": "procedure",
+    "nhi_code": "33044B",
+    "name_zh": "脊椎動靜脈造影",
+    "name_en": "Spinal angiography",
+    "points": 10000,
+    "category": "血管攝影",
+    "payment_text": ""
+  },
+  {
+    "id": "proc_11",
+    "type": "procedure",
+    "nhi_code": "33045B",
+    "name_zh": "主動靜脈造影 －胸腔主動靜脈",
+    "name_en": "Aortography-Thoracic aortography",
+    "points": 4830,
+    "category": "血管攝影",
+    "payment_text": ""
+  },
+  {
+    "id": "proc_12",
+    "type": "procedure",
+    "nhi_code": "33046B",
+    "name_zh": "內臟血管造影－ 一條血管",
+    "name_en": "Visceral angiography-one vessel",
+    "points": 7500,
+    "category": "血管攝影",
+    "payment_text": "肝動脈攝影Hepatic angiography、上腸系膜動脈攝影Superior mesenteric arteriography、脾動脈攝影Splenic arteriography、下腸系膜動脈攝影Inferior mesenteric arterio graphy、左胃動脈攝影Left gastric ang-iography比照申報，胃十二指腸動脈攝影Gastroduodenal arteriography、橫膈下動脈攝影Inferior phrenic arteriograp。"
+  },
+  {
+    "id": "proc_13",
+    "type": "procedure",
+    "nhi_code": "33047B",
+    "name_zh": "腎動靜脈造影",
+    "name_en": "Renal angiography",
+    "points": 4830,
+    "category": "血管攝影",
+    "payment_text": "包括單雙側"
+  },
+  {
+    "id": "proc_14",
+    "type": "procedure",
+    "nhi_code": "33048B",
+    "name_zh": "四肢血管造影",
+    "name_en": "Angiography of extremity",
+    "points": 7500,
+    "category": "血管攝影",
+    "payment_text": "不得同時申報33097B。"
+  },
+  {
+    "id": "proc_15",
+    "type": "procedure",
+    "nhi_code": "33049B",
+    "name_zh": "順行性靜脈 X光攝影",
+    "name_en": "Antegrade venography",
+    "points": 6000,
+    "category": "靜脈攝影",
+    "payment_text": "不得同時申報33097B及18047B。"
+  },
+  {
+    "id": "proc_16",
+    "type": "procedure",
+    "nhi_code": "33050B",
+    "name_zh": "逆行性靜脈 X光攝影",
+    "name_en": "Retrograde venography",
+    "points": 6000,
+    "category": "靜脈攝影",
+    "payment_text": "不得同時申報33097B。"
+  },
+  {
+    "id": "proc_17",
+    "type": "procedure",
+    "nhi_code": "33054B",
+    "name_zh": "脊髓造影 －頸椎",
+    "name_en": "Cervical spine myelography",
+    "points": 2100,
+    "category": "脊髓造影",
+    "payment_text": ""
+  },
+  {
+    "id": "proc_18",
+    "type": "procedure",
+    "nhi_code": "33055B",
+    "name_zh": "脊髓造影 －胸椎",
+    "name_en": "Thoracic spine myelography",
+    "points": 2100,
+    "category": "脊髓造影",
+    "payment_text": ""
+  },
+  {
+    "id": "proc_19",
+    "type": "procedure",
+    "nhi_code": "33056B",
+    "name_zh": "脊髓造影 －腰椎",
+    "name_en": "Lumber spine myelography",
+    "points": 2100,
+    "category": "脊髓造影",
+    "payment_text": ""
+  },
+  {
+    "id": "proc_20",
+    "type": "procedure",
+    "nhi_code": "33057B",
+    "name_zh": "脊髓造影 －頸椎+胸椎或胸椎+腰椎兩段造影",
+    "name_en": "Two segmental myelography",
+    "points": 2835,
+    "category": "脊髓造影",
+    "payment_text": ""
+  },
+  {
+    "id": "proc_21",
+    "type": "procedure",
+    "nhi_code": "33058B",
+    "name_zh": "脊髓造影 －全部",
+    "name_en": "Whole spine myelography",
+    "points": 3800,
+    "category": "脊髓造影",
+    "payment_text": ""
+  },
+  {
+    "id": "proc_22",
+    "type": "procedure",
+    "nhi_code": "33061B",
+    "name_zh": "骨盤動脈造影",
+    "name_en": "Pelvic angiography",
+    "points": 4830,
+    "category": "血管攝影",
+    "payment_text": ""
+  },
+  {
+    "id": "proc_23",
+    "type": "procedure",
+    "nhi_code": "33062B",
+    "name_zh": "鎖骨下血管造影",
+    "name_en": "Subclavian angiography",
+    "points": 4830,
+    "category": "血管攝影",
+    "payment_text": ""
+  },
+  {
+    "id": "proc_24",
+    "type": "procedure",
+    "nhi_code": "33063B",
+    "name_zh": "關節造影術",
+    "name_en": "Arthrography",
+    "points": 1800,
+    "category": "關節攝影",
+    "payment_text": ""
+  },
+  {
+    "id": "proc_25",
+    "type": "procedure",
+    "nhi_code": "33064B",
+    "name_zh": "雙能量X光骨質密度檢查",
+    "name_en": "Dual-energy X-ray absorptiometry, DXA",
+    "points": 600,
+    "category": "骨密度",
+    "payment_text": "1.適應症如下：(1)內分泌失調可能加速骨質流失者：A.副甲狀腺機能過高須接受治者。B.腎上腺皮質過高者。C.腦下垂體機能不全影響鈣代謝者。D.甲狀腺機能亢進症者。E.醫源性庫興氏症候群者。F.四十歲以上全身性類固醇持續使用三個月以上且Prednisolone每日劑量≧10mg或equivalent之紅斑性狼瘡病人。(2)非創傷性之骨折者。(3)停經後婦女及五十歲以上接受骨質疏鬆症追蹤治療（符合全民健康保險藥物給付項目及支付標準第六編第八十三條之藥品給付規定第5節5.6骨質疏鬆症治療藥物）者。(4)攝護腺癌病人在接受男性賀爾蒙阻斷治療前與治療後，得因病情需要施行骨質密度檢查。(5)乳癌病人在接受Aromatase Inhibitors治療前與治療後，因病情需要施行骨質密度檢查。(6)成骨不全症。2.支付規範：(1)符合前述第(1)至(5)項適應症者，因病情需要再次施行骨質密度檢查時，間隔時間應為二年以上，且是項檢查以三次為限。(2)符合前述第(6)項適應症者，因病情需要再次施行骨質密度檢查時，間隔時間應為一年以上。3.篩檢性檢查不列入本保險給付範圍。"
+  },
+  {
+    "id": "proc_26",
+    "type": "procedure",
+    "nhi_code": "33074B",
+    "name_zh": "單純性血管整形術",
+    "name_en": "P.T.A. (percutaneous transluminal angioplasty): simple",
+    "points": 10800,
+    "category": "血管介入",
+    "payment_text": "1.應有血管造影設備並報經保險人同意後實施。2.本項費用已包括選擇性血管造影(Including selective angiography)。3.施行33074B或33115B「單純性/複雜性血管整形術」原則上應已含括33048B「四肢血管造影」及33062B「鎖骨下血管造影」（不得同時併報），惟如因病情需要屬不同側時，得分別申報，其他特殊案例，則由專業審查認定。4.血管數計算方式：(1)動脈：A.上肢分為五部分（鎖骨下動脈、腋臂動脈、橈動脈、尺動脈、手部動脈），每部分算同一條血管。B.下肢分六部分（腸骨動脈、股膕動脈、前脛動脈、後脛動脈、腓腸骨動脈、足部動脈），每部分算同一條血管。C.動脈同一條血管內多處病灶，仍算同一條血管。D.33074B係指一條動脈血管之治療，33115B係指二條動脈血管（含）以上之治療。(2)靜脈：A.上肢分為二部位（前臂上臂靜脈、鎖骨下及頭臂靜脈）。B.下肢分為二部位（小腿大腿靜脈、腸骨靜脈）。C.33074B係指一部位靜脈血管之治療，33115B係指二部位靜脈血管之治療。(3)血管吻合處同動脈段或靜脈段（如動靜脈瘻管），仍算同一條血管。(4)若同時執行一條動脈及同一部位靜脈之血管整形術（非血管吻合處同動脈段或靜脈段），以33115B申報。5.提升兒童加成項目。6.施行本項原則上含括33048B及33062B，相同部位不得同時申報33097B、33133B、33147B。"
+  },
+  {
+    "id": "proc_27",
+    "type": "procedure",
+    "nhi_code": "33075B",
+    "name_zh": "血管阻塞術",
+    "name_en": "T.A.E.(trans-arterial embolization)",
+    "points": 22000,
+    "category": "血管介入",
+    "payment_text": "1.應有血管造影設備並報經保險人同意後實施2.包括選擇性血管造影、診斷性血管造影及當日血管阻塞術後追蹤造影。3.不得同時申報33097B。"
+  },
+  {
+    "id": "proc_28",
+    "type": "procedure",
+    "nhi_code": "33088B",
+    "name_zh": "內臟血管造影－ 二條血管",
+    "name_en": "Visceral angiography-two vessels",
+    "points": 11250,
+    "category": "血管攝影",
+    "payment_text": "肝動脈攝影Hepatic angiography、上腸系膜動脈攝影Superior mesenteric arteriography、脾動脈攝影Splenic arteriography、下腸系膜動脈攝影Inferior mesenteric arterio graphy、左胃動脈攝影Left gastric ang-iography比照申報，胃十二指腸動脈攝影Gastroduodenal arteriography、橫膈下動脈攝影Inferior phrenic arteriograp。"
+  },
+  {
+    "id": "proc_29",
+    "type": "procedure",
+    "nhi_code": "33089B",
+    "name_zh": "內臟血管造影－ 三條血管以上",
+    "name_en": "Visceral angiography-over two vessels",
+    "points": 15000,
+    "category": "血管攝影",
+    "payment_text": "肝動脈攝影Hepatic angiography、上腸系膜動脈攝影Superior mesenteric arteriography、脾動脈攝影Splenic arteriography、下腸系膜動脈攝影Inferior mesenteric arterio graphy、左胃動脈攝影Left gastric ang-iography比照申報，胃十二指腸動脈攝影Gastroduodenal arteriography、橫膈下動脈攝影Inferior phrenic arteriograp。"
+  },
+  {
+    "id": "proc_30",
+    "type": "procedure",
+    "nhi_code": "33103B",
+    "name_zh": "電腦斷層導引下組織切片,取樣剛針",
+    "name_en": "CT Guide biopsy",
+    "points": 3800,
+    "category": "CT導引",
+    "payment_text": "１．須檢附報告２．該次不得再申報一次同部位CT費用。"
+  },
+  {
+    "id": "proc_31",
+    "type": "procedure",
+    "nhi_code": "47065B",
+    "name_zh": "治療性導管植入術—末梢靜脈植入中心導管術",
+    "name_en": "Therapeutic catheter implantation — PICC(Peripheral line for central venous catheterization)",
+    "points": 3101,
+    "category": "血管通路",
+    "payment_text": "1.適應症：(1)癌症化學治療及癌症末期之疼痛治療。(2)下列三項適應症且預期同時治療達二週以上之病人：A.使用全靜脈營養輸液（TPN）（未滿二歲嬰兒本項為靜脈營養輸液，不限TPN）。B.免疫不全與使用免疫抑制劑。C.須接受中心靜脈導管置入（CVP）。2.提升兒童加成項目。"
+  }
+]

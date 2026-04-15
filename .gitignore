@@ -1,0 +1,6 @@
+.claude/
+serve_nhi.py
+*.pyc
+__pycache__/
+.DS_Store
+Thumbs.db

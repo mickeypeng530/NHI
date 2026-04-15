@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>健保快查 NHI Quick Reference</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1>🏥 健保快查</h1>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search" placeholder="搜尋診斷、藥物、處置、健保碼..." autocomplete="off" autocorrect="off" spellcheck="false">
+      <button class="clear-btn" id="clear-search">✕</button>
+    </div>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="all">全部 <span class="count">—</span></button>
+  <button class="tab-btn" data-tab="diagnosis">診斷 <span class="count">—</span></button>
+  <button class="tab-btn" data-tab="drug">藥物 <span class="count">—</span></button>
+  <button class="tab-btn" data-tab="procedure">處置 <span class="count">—</span></button>
+</div>
+
+<main class="main">
+  <div class="results-info" id="results-info">載入中...</div>
+  <div class="cards-grid" id="cards">
+    <div class="no-results"><div class="icon">⏳</div><p>載入資料中...</p></div>
+  </div>
+</main>
+
+<!-- Fuse.js for fuzzy search -->
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
