@@ -1,9 +1,15 @@
 /* ===== NHI Quick Reference App ===== */
 
-let allData = [];
+let featuredData = [];   // curated common list
+let fullData = [];       // all NHI items
 let fuseInstance = null;
+let fullFuseInstance = null;
+let fullLoaded = false;
+let fullLoading = false;
+
 let currentTab = 'all';
 let currentQuery = '';
+let isFullSearch = false;
 
 // ===== Load Data =====
 async function loadData() {
@@ -16,8 +22,8 @@ async function loadData() {
     const [diags, drugs, procs] = await Promise.all([
       diagRes.json(), drugRes.json(), procRes.json()
     ]);
-    allData = [...diags, ...drugs, ...procs];
-    initFuse();
+    featuredData = [...diags, ...drugs, ...procs];
+    initFuse(featuredData, true);
     render();
     updateTabCounts();
   } catch (e) {
@@ -26,31 +32,71 @@ async function loadData() {
   }
 }
 
+async function loadFullData() {
+  if (fullLoaded || fullLoading) return;
+  fullLoading = true;
+  const btn = document.getElementById('full-search-btn');
+  btn.textContent = '載入中...';
+  btn.disabled = true;
+
+  try {
+    const [drugRes, procRes] = await Promise.all([
+      fetch('data/all_drugs.json'),
+      fetch('data/all_procedures.json'),
+    ]);
+    const [drugs, procs] = await Promise.all([drugRes.json(), procRes.json()]);
+
+    // Get curated diagnoses
+    const diags = featuredData.filter(d => d.type === 'diagnosis');
+    fullData = [...diags, ...drugs, ...procs];
+    initFuse(fullData, false);
+    fullLoaded = true;
+    fullLoading = false;
+    isFullSearch = true;
+    btn.textContent = '完整搜尋 ✓';
+    btn.classList.add('active');
+    btn.disabled = false;
+    render();
+    updateTabCounts();
+  } catch (e) {
+    fullLoading = false;
+    btn.textContent = '完整搜尋';
+    btn.disabled = false;
+    alert('載入失敗：' + e.message);
+  }
+}
+
 // ===== Fuse.js Setup =====
-function initFuse() {
-  fuseInstance = new Fuse(allData, {
+function initFuse(data, isFeatured) {
+  const instance = new Fuse(data, {
     keys: [
       { name: 'name_zh',    weight: 0.35 },
       { name: 'name_en',    weight: 0.25 },
-      { name: 'brand',      weight: 0.3  },
-      { name: 'nhi_code',   weight: 0.25 },
+      { name: 'brand',      weight: 0.30 },
+      { name: 'nhi_code',   weight: 0.30 },
       { name: 'ingredient', weight: 0.15 },
-      { name: 'icd10_codes.code', weight: 0.2 },
-      { name: 'icd10_codes.eng',  weight: 0.1 },
-      { name: 'category',   weight: 0.1  },
+      { name: 'icd10_codes.code', weight: 0.25 },
+      { name: 'icd10_codes.eng',  weight: 0.10 },
     ],
-    threshold: 0.4,
+    threshold: 0.35,
     includeScore: true,
     ignoreLocation: true,
     minMatchCharLength: 1,
   });
+  if (isFeatured) fuseInstance = instance;
+  else fullFuseInstance = instance;
 }
+
+// ===== Get active data and fuse =====
+function getActiveData()  { return isFullSearch ? fullData : featuredData; }
+function getActiveFuse()  { return isFullSearch ? fullFuseInstance : fuseInstance; }
 
 // ===== Search =====
 function getFilteredData() {
+  const fuse = getActiveFuse();
   let results = currentQuery.trim()
-    ? fuseInstance.search(currentQuery).map(r => r.item)
-    : [...allData];
+    ? fuse.search(currentQuery).map(r => r.item)
+    : [...getActiveData()];
 
   if (currentTab !== 'all') {
     results = results.filter(d => d.type === currentTab);
@@ -63,19 +109,20 @@ function render() {
   const data = getFilteredData();
   const container = document.getElementById('cards');
   const info = document.getElementById('results-info');
+  const total = getActiveData().length;
+  const mode = isFullSearch ? '（完整資料庫）' : '（常用清單）';
 
   info.textContent = currentQuery
-    ? `找到 ${data.length} 筆符合「${currentQuery}」的結果`
-    : `共 ${data.length} 筆`;
+    ? `找到 ${data.length} 筆符合「${currentQuery}」的結果 ${mode}`
+    : `共 ${data.length} 筆 ${mode}`;
 
   if (data.length === 0) {
-    container.innerHTML = `<div class="no-results"><div class="icon">🔍</div><p>找不到相關資料</p></div>`;
+    container.innerHTML = `<div class="no-results"><div class="icon">🔍</div><p>找不到相關資料</p>${!isFullSearch ? '<p style="margin-top:8px;font-size:0.85rem">試試開啟「完整搜尋」搜尋全部健保碼</p>' : ''}</div>`;
     return;
   }
 
   container.innerHTML = data.map(item => renderCard(item)).join('');
 
-  // Attach events after render
   container.querySelectorAll('.copy-btn').forEach(btn => {
     btn.addEventListener('click', () => copyText(btn, btn.dataset.copy));
   });
@@ -140,22 +187,24 @@ function renderDrugCard(d) {
           <code style="font-size:0.85rem">${d.nhi_code}</code>
           <button class="copy-btn" data-copy="${d.nhi_code}">複製</button>
         </span>
-       </div>`
-    : '';
+       </div>` : '';
 
   const paySection = d.payment_text
     ? `<div class="payment-section">
         <button class="payment-toggle">給付規定 <span class="toggle-arrow">▼</span></button>
         <div class="payment-text">${escHtml(d.payment_text)}</div>
-       </div>`
-    : '';
+       </div>` : '';
+
+  const brandDisplay = d.brand
+    ? `${d.brand}${d.name_zh && d.name_zh !== d.brand ? ` <span style="font-weight:400;font-size:0.85rem">(${d.name_zh})</span>` : ''}`
+    : d.name_zh;
 
   return `
 <div class="card">
   <div class="card-header">
     <div class="type-dot drug"></div>
     <div class="card-title-area">
-      <div class="card-name-zh">${d.brand}${d.name_zh && d.name_zh !== d.brand ? ` <span style="font-weight:400;font-size:0.85rem">(${d.name_zh})</span>` : ''}</div>
+      <div class="card-name-zh">${brandDisplay}</div>
       <div class="card-name-en">${d.ingredient || d.name_en}</div>
       <div class="badge-row">
         <span class="badge badge-drug">藥物</span>
@@ -171,7 +220,6 @@ function renderDrugCard(d) {
         <span class="info-label">支付價</span>
         <span class="info-value">${priceHtml}</span>
       </div>
-      ${d.spec ? `<div class="info-row"><span class="info-label">規格</span><span class="info-value">${d.spec}</span></div>` : ''}
     </div>
     ${paySection}
   </div>
@@ -181,15 +229,14 @@ function renderDrugCard(d) {
 function renderProcCard(p) {
   const nthDot = p.points > 0
     ? `<span class="points-tag">${p.points.toLocaleString()} 點</span>
-       <span style="font-size:0.78rem;color:var(--text-muted)">≈ NT$${Math.round(p.points * 0.9).toLocaleString()}</span>`
+       <span style="font-size:0.78rem;color:var(--text-muted)">點費 NT$${(p.points * 0.4).toLocaleString(undefined,{maximumFractionDigits:0})}</span>`
     : '<span style="color:var(--text-muted)">—</span>';
 
   const paySection = p.payment_text
     ? `<div class="payment-section">
         <button class="payment-toggle">給付規定 <span class="toggle-arrow">▼</span></button>
         <div class="payment-text">${escHtml(p.payment_text)}</div>
-       </div>`
-    : '';
+       </div>` : '';
 
   return `
 <div class="card">
@@ -225,7 +272,7 @@ function renderProcCard(p) {
 
 // ===== Helpers =====
 function escHtml(str) {
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 function copyText(el, text) {
@@ -235,7 +282,6 @@ function copyText(el, text) {
     el.textContent = '已複製';
     setTimeout(() => { el.classList.remove('copied'); el.textContent = orig; }, 1500);
   }).catch(() => {
-    // fallback
     const ta = document.createElement('textarea');
     ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
     document.body.appendChild(ta); ta.select();
@@ -247,19 +293,21 @@ function copyText(el, text) {
 }
 
 function updateTabCounts() {
-  const counts = { all: allData.length, diagnosis: 0, drug: 0, procedure: 0 };
-  allData.forEach(d => counts[d.type]++);
+  const data = getActiveData();
+  const counts = { all: data.length, diagnosis: 0, drug: 0, procedure: 0 };
+  data.forEach(d => { if (counts[d.type] != null) counts[d.type]++; });
   document.querySelectorAll('.tab-btn').forEach(btn => {
     const tab = btn.dataset.tab;
     const countEl = btn.querySelector('.count');
-    if (countEl && counts[tab] != null) countEl.textContent = counts[tab];
+    if (countEl && counts[tab] != null) countEl.textContent = counts[tab].toLocaleString();
   });
 }
 
 // ===== Event Listeners =====
 document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search');
-  const clearBtn = document.getElementById('clear-search');
+  const clearBtn    = document.getElementById('clear-search');
+  const fullBtn     = document.getElementById('full-search-btn');
 
   searchInput.addEventListener('input', e => {
     currentQuery = e.target.value;
@@ -280,6 +328,18 @@ document.addEventListener('DOMContentLoaded', () => {
       currentTab = btn.dataset.tab;
       render();
     });
+  });
+
+  fullBtn.addEventListener('click', () => {
+    if (!fullLoaded) {
+      loadFullData();
+    } else {
+      isFullSearch = !isFullSearch;
+      fullBtn.textContent = isFullSearch ? '完整搜尋 ✓' : '常用清單';
+      fullBtn.classList.toggle('active', isFullSearch);
+      render();
+      updateTabCounts();
+    }
   });
 
   loadData();

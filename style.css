@@ -99,6 +99,23 @@ header h1 {
 
 .search-wrap input:not(:placeholder-shown) ~ .clear-btn { display: block; }
 
+.full-search-btn {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: white;
+  padding: 7px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.full-search-btn:hover { background: rgba(255,255,255,0.25); }
+.full-search-btn.active { background: #ff9800; border-color: #ff9800; color: white; }
+.full-search-btn:disabled { opacity: 0.6; cursor: default; }
+
 /* ===== Tabs ===== */
 .tabs {
   background: white;
