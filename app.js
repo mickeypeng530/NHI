@@ -227,9 +227,10 @@ function renderDrugCard(d) {
 }
 
 function renderProcCard(p) {
-  const nthDot = p.points > 0
-    ? `<span class="points-tag">${p.points.toLocaleString()} 點</span>
-       <span style="font-size:0.78rem;color:var(--text-muted)">點費 NT$${(p.points * 0.4).toLocaleString(undefined,{maximumFractionDigits:0})}</span>`
+  const ppfAmt = p.ppf != null ? p.ppf : (p.points > 0 ? Math.round(p.points * 0.4) : null);
+  const nthDot = (p.points > 0 || ppfAmt)
+    ? `${p.points > 0 ? `<span class="points-tag">${p.points.toLocaleString()} 點</span>` : ''}
+       ${ppfAmt ? `<span style="font-size:0.9rem;font-weight:700;color:#c55800">PPF NT$${ppfAmt.toLocaleString()}</span>` : ''}`
     : '<span style="color:var(--text-muted)">—</span>';
 
   const paySection = p.payment_text
@@ -257,7 +258,7 @@ function renderProcCard(p) {
         <span class="info-label">健保碼</span>
         <span class="info-value">
           <code style="font-size:0.85rem">${p.nhi_code}</code>
-          <button class="copy-btn" data-copy="${p.nhi_code}">複製</button>
+          ${p.nhi_code !== '未列項目' ? `<button class="copy-btn" data-copy="${p.nhi_code}">複製</button>` : ''}
         </span>
       </div>
       <div class="info-row">
@@ -340,6 +341,19 @@ document.addEventListener('DOMContentLoaded', () => {
       render();
       updateTabCounts();
     }
+  });
+
+  // Dark mode toggle
+  const themeBtn = document.getElementById('theme-btn');
+  const applyTheme = (dark) => {
+    document.body.dataset.dark = dark ? '1' : '';
+    themeBtn.textContent = dark ? '☀️' : '🌙';
+  };
+  applyTheme(localStorage.getItem('dark') === '1');
+  themeBtn.addEventListener('click', () => {
+    const dark = document.body.dataset.dark !== '1';
+    localStorage.setItem('dark', dark ? '1' : '0');
+    applyTheme(dark);
   });
 
   loadData();
