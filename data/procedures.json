@@ -404,7 +404,7 @@
     "name_en": "Esophagography / T-tube barium exam",
     "points": 600,
     "ppf": 90,
-    "category": "消化道攝影",
+    "category": "特殊攝影",
     "payment_text": ""
   },
   {
@@ -415,7 +415,7 @@
     "name_en": "Upper GI series (UGI)",
     "points": 1445,
     "ppf": 217,
-    "category": "消化道攝影",
+    "category": "特殊攝影",
     "payment_text": ""
   },
   {
@@ -426,7 +426,7 @@
     "name_en": "Small bowel series",
     "points": 1470,
     "ppf": 221,
-    "category": "消化道攝影",
+    "category": "特殊攝影",
     "payment_text": ""
   },
   {
@@ -437,7 +437,7 @@
     "name_en": "Upper GI + small bowel series",
     "points": 1470,
     "ppf": 437,
-    "category": "消化道攝影",
+    "category": "特殊攝影",
     "payment_text": ""
   },
   {
@@ -448,7 +448,7 @@
     "name_en": "Large bowel / Barium enema (LGI)",
     "points": 1230,
     "ppf": 200,
-    "category": "消化道攝影",
+    "category": "特殊攝影",
     "payment_text": ""
   },
   {
@@ -459,7 +459,7 @@
     "name_en": "Fluoroscopic reduction of intussusception",
     "points": 2915,
     "ppf": 437,
-    "category": "消化道攝影",
+    "category": "特殊攝影",
     "payment_text": ""
   },
   {
@@ -470,7 +470,7 @@
     "name_en": "Intravenous pyelography / urography (IVP)",
     "points": 1445,
     "ppf": 145,
-    "category": "泌尿攝影",
+    "category": "特殊攝影",
     "payment_text": ""
   },
   {
@@ -480,7 +480,7 @@
     "name_zh": "逆行性腎盂造影 — 單側 (Pyelography)",
     "name_en": "Retrograde pyelography — unilateral",
     "points": 1500,
-    "category": "泌尿攝影",
+    "category": "特殊攝影",
     "payment_text": ""
   },
   {
@@ -490,7 +490,7 @@
     "name_zh": "逆行性腎盂造影 — 雙側 (Pyelography bilateral)",
     "name_en": "Retrograde pyelography — bilateral",
     "points": 1950,
-    "category": "泌尿攝影",
+    "category": "特殊攝影",
     "payment_text": ""
   },
   {
@@ -501,7 +501,7 @@
     "name_en": "Voiding cystourethrography (VCUG)",
     "points": 750,
     "ppf": 113,
-    "category": "泌尿攝影",
+    "category": "特殊攝影",
     "payment_text": ""
   },
   {
@@ -512,7 +512,7 @@
     "name_en": "Cystography",
     "points": 660,
     "ppf": 100,
-    "category": "泌尿攝影",
+    "category": "特殊攝影",
     "payment_text": ""
   },
   {
@@ -523,7 +523,7 @@
     "name_en": "Hysterosalpingography (HSG)",
     "points": 1400,
     "ppf": 210,
-    "category": "泌尿攝影",
+    "category": "特殊攝影",
     "payment_text": ""
   },
   {
@@ -534,7 +534,7 @@
     "name_en": "T-tube cholangiography",
     "points": 820,
     "ppf": 123,
-    "category": "膽道介入",
+    "category": "特殊攝影",
     "payment_text": ""
   },
   {
@@ -545,7 +545,7 @@
     "name_en": "Fistulography / Sinography",
     "points": 1020,
     "ppf": 153,
-    "category": "泌尿攝影",
+    "category": "特殊攝影",
     "payment_text": ""
   },
   {
