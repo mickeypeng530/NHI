@@ -346,12 +346,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Dark mode toggle
   const themeBtn = document.getElementById('theme-btn');
   const applyTheme = (dark) => {
-    document.body.dataset.dark = dark ? '1' : '';
+    if (dark) {
+      document.documentElement.setAttribute('data-dark', '1');
+    } else {
+      document.documentElement.removeAttribute('data-dark');
+    }
     themeBtn.textContent = dark ? '☀️' : '🌙';
   };
   applyTheme(localStorage.getItem('dark') === '1');
   themeBtn.addEventListener('click', () => {
-    const dark = document.body.dataset.dark !== '1';
+    const dark = !document.documentElement.hasAttribute('data-dark');
     localStorage.setItem('dark', dark ? '1' : '0');
     applyTheme(dark);
   });

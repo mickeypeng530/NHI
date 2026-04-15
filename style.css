@@ -407,7 +407,7 @@ header h1 {
 .theme-btn:hover { background: rgba(255,255,255,0.28); }
 
 /* ===== Dark Mode ===== */
-body[data-dark="1"] {
+html[data-dark="1"] {
   --bg: #111827;
   --card-bg: #1f2937;
   --border: #374151;
@@ -416,13 +416,13 @@ body[data-dark="1"] {
   --shadow: 0 2px 8px rgba(0,0,0,0.4);
   --shadow-hover: 0 4px 16px rgba(0,0,0,0.6);
 }
-body[data-dark="1"] header { background: #0f172a; }
-body[data-dark="1"] .tabs { background: #1f2937; border-bottom-color: #374151; }
-body[data-dark="1"] .payment-text { background: #111827; color: #d1d5db; }
-body[data-dark="1"] .icd-chip { background: #374151; border-color: #4b5563; color: #d1d5db; }
-body[data-dark="1"] .icd-chip:hover { background: var(--primary); color: white; }
-body[data-dark="1"] .badge-cat { background: #374151; color: #d1d5db; }
-body[data-dark="1"] code { color: #93c5fd; }
+html[data-dark="1"] header { background: #0f172a; }
+html[data-dark="1"] .tabs { background: #1f2937; border-bottom-color: #374151; }
+html[data-dark="1"] .payment-text { background: #111827; color: #d1d5db; }
+html[data-dark="1"] .icd-chip { background: #374151; border-color: #4b5563; color: #d1d5db; }
+html[data-dark="1"] .icd-chip:hover { background: var(--primary); color: white; }
+html[data-dark="1"] .badge-cat { background: #374151; color: #d1d5db; }
+html[data-dark="1"] code { color: #93c5fd; }
 
 /* ===== Responsive ===== */
 @media (max-width: 600px) {
